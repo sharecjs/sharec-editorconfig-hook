@@ -1,0 +1,50 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  lint:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: ['16.x']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          version: '16.x'
+      - name: Restore npm cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
+      - name: Install dependencies
+        run: |
+          yarn
+      - name: Running linters
+        run: |
+          yarn lint
+
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        node_version: ['12.x', '14.x', '16.x']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          version: ${{ matrix.node_version }}
+      - name: Install dependencies
+        run: |
+          yarn
+      - name: Running tests
+        run: |
+          yarn test

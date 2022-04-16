@@ -1,0 +1,9 @@
+node_modules
+.idea
+lib/test
+wallaby.js
+.editorconfig
+.gitignore
+jest.setup.js
+tsconfig.json
+

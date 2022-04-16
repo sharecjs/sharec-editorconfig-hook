@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`editorconfigHook with .editorconfig in configs with spaces adds 4 spaces 1`] = `
+"foo
+    bar
+        baz
+"
+`;
+
+exports[`editorconfigHook with .editorconfig in configs with tabs adds tabs 1`] = `
+"foo
+	bar
+		baz
+"
+`;
+
+exports[`editorconfigHook with .editorconfig in target dir with spaces adds 4 spaces 1`] = `
+"foo
+    bar
+        baz
+"
+`;
+
+exports[`editorconfigHook with .editorconfig in target dir with tabs adds tabs 1`] = `
+"foo
+	bar
+		baz
+"
+`;
+
+exports[`editorconfigHook without .editorconfig returns configs as is 1`] = `
+"foo
+  bar
+    baz
+"
+`;
